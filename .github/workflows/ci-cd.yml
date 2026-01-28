@@ -54,7 +54,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t dentaflow:latest .
+          docker build -t dentaflow:latest -f docker/Dockerfile .
 
   # JOB 3 : Déploiement Staging (optionnel)
   deploy-staging:
