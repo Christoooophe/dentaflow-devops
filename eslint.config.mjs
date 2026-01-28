@@ -5,14 +5,9 @@ export default [
     {
         files: ["**/*.{js,mjs,cjs}"],
         languageOptions: {
-            globals: globals.browser,
+            globals: globals.node,
+            sourceType: "commonjs",
         },
-        rules: {
-            ...js.configs.recommended.rules,
-        },
-    },
-    {
-        files: ["**/*.cjs"],
-        languageOptions: { sourceType: "commonjs" },
+        rules: { ...js.configs.recommended.rules },
     },
 ];
