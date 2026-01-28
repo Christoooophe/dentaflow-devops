@@ -38,6 +38,7 @@ jobs:
         run: npm audit --audit-level=high
 
       - name: Dependency vulnerability scan
+        if: github.event_name == 'pull_request'
         uses: actions/dependency-review-action@v3
 
   # JOB 2 : Build Docker
