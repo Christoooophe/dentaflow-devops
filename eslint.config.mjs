@@ -3,11 +3,11 @@ import globals from "globals";
 
 export default [
     {
-        files: ["**/*.{js,mjs,cjs}"],
+        files: ["src/api/**/*.js"],
         languageOptions: {
             globals: globals.node,
             sourceType: "commonjs",
         },
         rules: { ...js.configs.recommended.rules },
-    },
+    }
 ];
