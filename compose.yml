@@ -2,10 +2,10 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_USER:-user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-!ChangeMe!}
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -17,17 +17,17 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "${REDIS_PORT}:${REDIS_PORT}"
+      - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
   app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${APP_PORT}:${APP_PORT}"
+      - "${APP_PORT:-3000}:${APP_PORT:-3000}"
     environment:
-      NODE_ENV: ${NODE_ENV}
-      DB_HOST: ${DB_HOST}
-      DB_PASSWORD: ${DB_PASSWORD}
+      NODE_ENV: ${NODE_ENV:-development}
+      DB_HOST: ${DB_HOST:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-!ChangeMe!}
     depends_on:
       postgres:
         condition: service_healthy
