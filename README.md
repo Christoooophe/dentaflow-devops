@@ -9,7 +9,7 @@
 ### 1️ - Cloner le projet
 
 ```bash
-git clone https://github.com/Christoooophe/dentaflow-devops.git
+git clone https://github.com/DentaFlow-Groupes/dentaflow-devops.git
 
 cd dentaflow-devops
 ```
@@ -29,7 +29,7 @@ npm install
 
 ```bash
 cd docker
-docker-compose up -d
+ docker compose --env-file ../.env up --build
 ```
 
 ### 4️ - Accéder à l'application
@@ -47,39 +47,50 @@ docker-compose up -d
 ```bash
 dentaflow/
 │
+├── .github/
+│   └── workflows/
+│   │   └── ci-cd.yml
+│   └── dependabot.yml
+├── docker/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── docs/
+│   ├── swagger.json
+│   └── swagger-definition.js
+├── logs/
+│   └── .gitkeep
 ├── src/
 │   ├── api/
 │   │   ├── routes/
+│   │   │    └── health.js
 │   │   └── server.js
 │   ├── models/
 │   └── services/
-│
 ├── tests/
 │   ├── unit/
+│   │   └── example.test.js
 │   └── integration/
-│
-├── docs/
-│   └── swagger-definition.js
-│
-├── docker/
-├── logs/
-│
-├── .github/workflows/
-│   └── ci-cd.yml
-│
 ├── .env.example
-├── Dockerfile
-├── docker-compose.yml
+├── .eslintrc.json
+├── .gitignore
+├── checklist.sh
+├── .eslint.config.mjs
+├── .jest.config.js
 ├── package.json
+├── package-lock.json
 ├── sonar-project.properties
 └── README.md
 ```
 
 
 ## 🧪 Qualité & Tests
-a
 ### Lancer les tests
+Avant de lancer les tests à l'intérieur du container,
+vous devez modifier la valeur de la variable NODE_ENV
+dans votre fichier .env pour mettre en mode NODE_ENV=test
 
+Une fois ceci fait, vous devez rebuild le conteneur pour pouvoir lancer les tests
+à l'intérieur.
 ```bash
 npm test
 ```
