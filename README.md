@@ -87,7 +87,7 @@ dentaflow/
 ### Lancer les tests
 Avant de lancer les tests à l'intérieur du container,
 vous devez modifier la valeur de la variable NODE_ENV
-dans votre fichier .env pour mettre en mode NODE_ENV=test
+dans votre fichier .env pour mettre en mode NODE_ENV=test.
 
 Une fois ceci fait, vous devez rebuild le conteneur pour pouvoir lancer les tests
 à l'intérieur.
